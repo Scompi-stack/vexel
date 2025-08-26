@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área Privada - Vexel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Paleta de azules profesional y sofisticada */
+            --primary-dark: #0B1426;        /* Azul muy oscuro para fondos premium */
+            --primary-navy: #1E293B;        /* Azul marino para secciones importantes */
+            --primary-blue: #2563EB;        /* Azul corporativo principal */
+            --accent-blue: #3B82F6;         /* Azul vibrante para CTAs */
+            --light-blue: #DBEAFE;          /* Azul muy claro para fondos suaves */
+            --sky-blue: #E0F2FE;            /* Azul cielo para acentos suaves */
+            
+            /* Colores de apoyo */
+            --white: #FFFFFF;
+            --gray-50: #F8FAFC;
+            --gray-100: #F1F5F9;
+            --gray-200: #E2E8F0;
+            --gray-400: #94A3B8;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1E293B;
+            --gray-900: #0F172A;
+            
+            /* Gradientes profesionales */
+            --gradient-primary: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+            --gradient-hero: linear-gradient(135deg, #0B1426 0%, #1E293B 50%, #2563EB 100%);
+            --gradient-card: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(59, 130, 246, 0.02) 100%);
+            --gradient-accent: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+            
+            /* Sombras profesionales */
+            --shadow-sm: 0 2px 8px rgba(37, 99, 235, 0.08);
+            --shadow-md: 0 8px 25px rgba(37, 99, 235, 0.12);
+            --shadow-lg: 0 20px 40px rgba(37, 99, 235, 0.15);
+            --shadow-xl: 0 25px 50px rgba(37, 99, 235, 0.20);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-800);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            background-color: var(--white);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header Premium */
+        .header {
+            background: rgba(11, 20, 38, 0.95);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow-lg);
+            border-bottom: 1px solid rgba(37, 99, 235, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            padding: 1rem 0;
+            background: rgba(11, 20, 38, 0.98);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Sora', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--white);
+            text-decoration: none;
+            position: relative;
+            letter-spacing: -0.02em;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient-accent);
+            transform: scaleX(0);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 2px;
+        }
+
+        .logo:hover::after {
+            transform: scaleX(1);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+            margin: 0;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-menu a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent-blue);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent-blue);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .nav-menu a:hover::before {
+            width: 80%;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--white);
+            transition: color 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            color: var(--accent-blue);
+        }
+
+        /* Private Area Section Premium */
+        .private-area {
+            background: var(--gradient-hero);
+            color: white;
+            padding: 12rem 0 10rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .private-area::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 25% 75%, rgba(37, 99, 235, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 75% 25%, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
+        }
+
+        .private-area-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .private-area-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 600px;
+            padding: 0 2rem;
+        }
+
+        .password-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 4rem 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .access-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(37, 99, 235, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(37, 99, 235, 0.3);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--light-blue);
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .password-form h3 {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            background: linear-gradient(135deg, var(--white) 0%, var(--light-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        .password-form p {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            color: var(--gray-200);
+            line-height: 1.7;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            color: var(--white);
+            font-size: 0.95rem;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 1.25rem 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            font-size: 1rem;
+            color: var(--white);
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .password-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .password-input:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .password-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            background: var(--gradient-accent);
+            color: white;
+            padding: 1.25rem 2.5rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .password-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .password-button:hover::before {
+            left: 100%;
+        }
+
+        .password-button:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .error-message {
+            color: #EF4444;
+            margin-top: 1.5rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 1rem;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        .security-note {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: var(--gray-300);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            opacity: 0.8;
+        }
+
+        /* Footer Premium */
+        .footer {
+            background: var(--primary-dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            color: var(--gray-400);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 32px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 24px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--primary-dark);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: var(--shadow-xl);
+                gap: 0;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu li {
+                width: 100%;
+            }
+
+            .nav-menu a {
+                width: 100%;
+                padding: 1rem;
+                border-radius: 8px;
+            }
+
+            .private-area {
+                padding: 10rem 0 8rem;
+            }
+
+            .private-area-content {
+                padding: 0 1rem;
+            }
+
+            .password-form {
+                padding: 3rem 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .password-form {
+                padding: 2.5rem 1.5rem;
+            }
+        }
+
+        /* Animation Classes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        /* Particle Animation */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(59, 130, 246, 0.6);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .particle:nth-child(2) { animation-delay: -2s; }
+        .particle:nth-child(3) { animation-delay: -4s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 1; }
+            33% { transform: translateY(-30px) rotate(120deg); opacity: 0.8; }
+            66% { transform: translateY(-60px) rotate(240deg); opacity: 0.6; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container nav">
+            <a href="index.html" class="logo">Vexel</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html#hero">Inicio</a></li>
+                    <li><a href="index.html#process">Proceso</a></li>
+                    <li><a href="index.html#portfolio">Portafolio</a></li>
+                    <li><a href="index.html#faq">FAQ</a></li>
+                    <li><a href="index.html#contact">Contacto</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" aria-label="Toggle navigation menu">☰</button>
+        </div>
+    </header>
+
+    <section id="private-area" class="private-area">
+        <div class="private-area-particles">
+            <div class="particle" style="left: 15%; top: 25%;"></div>
+            <div class="particle" style="left: 85%; top: 35%;"></div>
+            <div class="particle" style="left: 65%; top: 75%;"></div>
+        </div>
+        <div class="container">
+            <div class="private-area-content">
+                <div class="password-form">
+                    <div class="access-badge">
+                        🔒 Acceso Restringido
+                    </div>
+                    <h3>Área Privada</h3>
+                    <p>
+                        Esta sección contiene información confidencial. Por favor, introduce la contraseña para continuar.
+                    </p>
+                    <div class="form-group">
+                        <label for="passwordInput">Contraseña de Acceso</label>
+                        <input type="password" id="passwordInput" class="password-input" placeholder="Introduce tu contraseña">
+                    </div>
+                    <button id="accessButton" class="password-button">
+                        Acceder al Área Privada
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                    <div id="errorMessage" class="error-message" style="display:none;">
+                        ❌ Contraseña incorrecta. Por favor, verifica e intenta nuevamente.
+                    </div>
+                    <div class="security-note">
+                        🛡️ Tu información está protegida con encriptación de nivel empresarial
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                &copy; 2024 Vexel. Todos los derechos reservados. Hecho con ❤️ en España.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            
+            // Animate hamburger menu
+            if (navMenu.classList.contains('active')) {
+                menuToggle.innerHTML = '✕';
+            } else {
+                menuToggle.innerHTML = '☰';
+            }
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                menuToggle.innerHTML = '☰';
+            });
+        });
+
+        // Private Area password check with enhanced UX
+        const passwordInput = document.getElementById('passwordInput');
+        const accessButton = document.getElementById('accessButton');
+        const errorMessage = document.getElementById('errorMessage');
+
+        // Allow Enter key to submit
+        passwordInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                accessButton.click();
+            }
+        });
+
+        accessButton.addEventListener('click', function() {
+            const password = passwordInput.value.trim();
+            
+            if (!password) {
+                showError('Por favor, introduce una contraseña.');
+                return;
+            }
+            
+            // Show loading state
+            const originalText = accessButton.textContent;
+            accessButton.textContent = 'Verificando...';
+            accessButton.disabled = true;
+            
+            // Simulate authentication delay
+            setTimeout(() => {
+                if (password === '12345') {
+                    accessButton.textContent = '¡Acceso Concedido!';
+                    accessButton.style.background = '#10B981';
+                    
+                    // Redirect after success animation
+                    setTimeout(() => {
+                        window.location.href = 'precios.html';
+                    }, 1000);
+                } else {
+                    showError('Contraseña incorrecta. Por favor, verifica e intenta nuevamente.');
+                    accessButton.textContent = originalText;
+                    accessButton.disabled = false;
+                    passwordInput.focus();
+                }
+            }, 1500);
+        });
+
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+            passwordInput.style.borderColor = '#EF4444';
+            
+            setTimeout(() => {
+                errorMessage.style.display = 'none';
+                passwordInput.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+            }, 4000);
+        }
+
+        // Particles animation
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 6 + 's';
+            
+            document.querySelector('.private-area-particles').appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 6000);
+        }
+
+        // Create particles periodically
+        setInterval(createParticle, 2500);
+
+        // Initial focus on password input
+        window.addEventListener('load', () => {
+            passwordInput.focus();
+        });
+    </script>
+</body>
+</html>
