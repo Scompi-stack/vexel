@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal - Vexel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Paleta de azules profesional y sofisticada */
+            --primary-dark: #0B1426;        
+            --primary-navy: #1E293B;        
+            --primary-blue: #2563EB;        
+            --accent-blue: #3B82F6;         
+            --light-blue: #DBEAFE;          
+            --sky-blue: #E0F2FE;            
+            
+            /* Colores de apoyo */
+            --white: #FFFFFF;
+            --gray-50: #F8FAFC;
+            --gray-100: #F1F5F9;
+            --gray-200: #E2E8F0;
+            --gray-400: #94A3B8;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1E293B;
+            --gray-900: #0F172A;
+            
+            /* Gradientes profesionales */
+            --gradient-primary: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+            --gradient-hero: linear-gradient(135deg, #0B1426 0%, #1E293B 50%, #2563EB 100%);
+            --gradient-card: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(59, 130, 246, 0.02) 100%);
+            --gradient-accent: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+            
+            /* Sombras profesionales */
+            --shadow-sm: 0 2px 8px rgba(37, 99, 235, 0.08);
+            --shadow-md: 0 8px 25px rgba(37, 99, 235, 0.12);
+            --shadow-lg: 0 20px 40px rgba(37, 99, 235, 0.15);
+            --shadow-xl: 0 25px 50px rgba(37, 99, 235, 0.20);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-800);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            background-color: var(--white);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header Premium */
+        .header {
+            background: rgba(11, 20, 38, 0.95);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow-lg);
+            border-bottom: 1px solid rgba(37, 99, 235, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            padding: 1rem 0;
+            background: rgba(11, 20, 38, 0.98);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Sora', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--white);
+            text-decoration: none;
+            position: relative;
+            letter-spacing: -0.02em;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient-accent);
+            transform: scaleX(0);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 2px;
+        }
+
+        .logo:hover::after {
+            transform: scaleX(1);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+            margin: 0;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--white);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-menu a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent-blue);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent-blue);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .nav-menu a:hover::before {
+            width: 80%;
+        }
+
+        .nav-menu a.active {
+            color: var(--accent-blue);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .nav-menu a.active::before {
+            width: 80%;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--white);
+            transition: color 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            color: var(--accent-blue);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-bottom: 6rem;
+            min-height: 100vh;
+        }
+
+        .legal-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 10rem 0 6rem;
+            background: var(--gradient-hero);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            margin-top: 0;
+        }
+
+        .legal-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 25% 75%, rgba(37, 99, 235, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 75% 25%, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
+        }
+
+        .legal-header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .legal-title {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .legal-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            color: var(--gray-200);
+        }
+
+        /* Tab Navigation */
+        .tab-navigation {
+            background: var(--white);
+            padding: 2rem 0;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 7rem;
+            z-index: 100;
+        }
+
+        .tab-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            background: var(--gray-100);
+            border: 2px solid transparent;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--gray-700);
+        }
+
+        .tab-button:hover {
+            background: var(--light-blue);
+            border-color: var(--accent-blue);
+            color: var(--primary-blue);
+            transform: translateY(-2px);
+        }
+
+        .tab-button.active {
+            background: var(--gradient-accent);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Content Sections */
+        .tab-content {
+            display: none;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .legal-section {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-200);
+            margin-bottom: 2rem;
+        }
+
+        .legal-section h2 {
+            font-family: 'Sora', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--light-blue);
+        }
+
+        .legal-section h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin: 2rem 0 1rem 0;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .legal-section h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.2rem;
+            width: 4px;
+            height: 1.2rem;
+            background: var(--gradient-accent);
+            border-radius: 2px;
+        }
+
+        .legal-section p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1rem;
+            color: var(--gray-700);
+        }
+
+        .legal-section ul {
+            margin: 1rem 0 2rem 1.5rem;
+            list-style: none;
+        }
+
+        .legal-section ul li {
+            position: relative;
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            line-height: 1.7;
+            color: var(--gray-700);
+        }
+
+        .legal-section ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .legal-section strong {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        .contact-info {
+            background: var(--gradient-card);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid var(--light-blue);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--gradient-accent);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .back-link:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-dark);
+            color: var(--gray-400);
+            padding: 3rem 0 1rem;
+            text-align: center;
+            border-top: 1px solid var(--gray-800);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--primary-dark);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: var(--shadow-xl);
+                gap: 0;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu li {
+                width: 100%;
+            }
+
+            .nav-menu a {
+                width: 100%;
+                padding: 1rem;
+                border-radius: 8px;
+            }
+
+            .tab-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .tab-button {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+
+            .legal-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .main-content {
+                padding-top: 0;
+            }
+
+            .legal-header {
+                padding: 8rem 0 4rem;
+            }
+
+            .tab-navigation {
+                top: 5rem;
+            }
+        }
+
+        /* Animation Classes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container nav">
+            <a href="index.html" class="logo">Vexel</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#privacidad" class="tab-link" data-tab="privacidad">Política de Privacidad</a></li>
+                    <li><a href="#terminos" class="tab-link" data-tab="terminos">Términos y Condiciones</a></li>
+                    <li><a href="#calidad" class="tab-link" data-tab="calidad">Política de Calidad</a></li>
+                    <li><a href="index.html">Volver al Inicio</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" aria-label="Toggle navigation menu">☰</button>
+        </div>
+    </header>
+
+    <div class="legal-header">
+        <div class="container legal-header-content">
+            <h1 class="legal-title">Información Legal</h1>
+            <p class="legal-subtitle">
+                Transparencia y compromiso en todos nuestros servicios
+            </p>
+        </div>
+    </div>
+
+    <div class="tab-navigation">
+        <div class="container">
+            <div class="tab-buttons">
+                <button class="tab-button active" data-tab="privacidad">Política de Privacidad</button>
+                <button class="tab-button" data-tab="terminos">Términos y Condiciones</button>
+                <button class="tab-button" data-tab="calidad">Política de Calidad</button>
+            </div>
+        </div>
+    </div>
+
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- Política de Privacidad -->
+            <div id="privacidad" class="tab-content active">
+                <div class="legal-section">
+                    <h2>Política de Privacidad – Vexel</h2>
+                    <p>En <strong>Vexel</strong> nos tomamos muy en serio la privacidad de nuestros usuarios y clientes. A través de la presente Política de Privacidad te informamos sobre cómo recopilamos, utilizamos y protegemos los datos personales que nos proporcionas mediante nuestro sitio web.</p>
+                    
+                    <h3>1. Responsable del tratamiento</h3>
+                    <div class="contact-info">
+                        <ul>
+                            <li><strong>Nombre comercial:</strong> Vexel</li>
+                            <li><strong>Correo de contacto:</strong> contacto@vexel.com <em>(puedes cambiarlo por el real)</em></li>
+                            <li><strong>Finalidad:</strong> Gestión de solicitudes recibidas a través de los formularios de la web.</li>
+                        </ul>
+                    </div>
+
+                    <h3>2. Datos que recopilamos</h3>
+                    <p>A través del formulario de contacto/propuesta recopilamos los siguientes datos personales:</p>
+                    <ul>
+                        <li>Nombre completo</li>
+                        <li>Correo electrónico</li>
+                        <li>Teléfono (opcional)</li>
+                        <li>Tipo de negocio</li>
+                        <li>Información adicional sobre el proyecto</li>
+                    </ul>
+
+                    <h3>3. Finalidad del tratamiento</h3>
+                    <p>Los datos proporcionados serán tratados con las siguientes finalidades:</p>
+                    <ul>
+                        <li>Responder a las solicitudes, consultas o propuestas que envíes a través del formulario.</li>
+                        <li>Elaborar y enviar presupuestos o información relacionada con nuestros servicios.</li>
+                        <li>Comunicaciones relacionadas exclusivamente con el servicio solicitado.</li>
+                    </ul>
+                    <p>En ningún caso utilizaremos tus datos para finalidades diferentes a las descritas.</p>
+
+                    <h3>4. Legitimación</h3>
+                    <p>La base legal para el tratamiento de tus datos es tu consentimiento expreso, otorgado al enviar el formulario y aceptar esta Política de Privacidad.</p>
+
+                    <h3>5. Conservación de los datos</h3>
+                    <p>Los datos se conservarán durante el tiempo estrictamente necesario para atender tu solicitud o propuesta, así como el tiempo legal necesario para el cumplimiento de obligaciones fiscales o administrativas.</p>
+
+                    <h3>6. Destinatarios de los datos</h3>
+                    <p>No cederemos tus datos personales a terceros, salvo obligación legal.</p>
+
+                    <h3>7. Derechos de los usuarios</h3>
+                    <p>Como usuario, tienes derecho a:</p>
+                    <ul>
+                        <li>Acceder a tus datos personales.</li>
+                        <li>Rectificar datos inexactos.</li>
+                        <li>Solicitar su supresión cuando los datos ya no sean necesarios.</li>
+                        <li>Oponerte al tratamiento de tus datos.</li>
+                        <li>Solicitar la limitación del tratamiento.</li>
+                        <li>Solicitar la portabilidad de tus datos.</li>
+                    </ul>
+                    <p>Puedes ejercer estos derechos enviando una solicitud a nuestro correo electrónico: <strong>contacto@vexel.com</strong> <em>(cambia al real)</em>.</p>
+
+                    <h3>8. Seguridad de la información</h3>
+                    <p>En <strong>Vexel</strong> aplicamos las medidas técnicas y organizativas necesarias para garantizar la confidencialidad, integridad y disponibilidad de los datos personales que nos facilitas, evitando su alteración, pérdida, tratamiento o acceso no autorizado.</p>
+
+                    <h3>9. Cambios en la política</h3>
+                    <p>Nos reservamos el derecho de modificar esta Política de Privacidad en cualquier momento. Los cambios se publicarán en esta misma página y se aplicarán desde el momento de su publicación.</p>
+                </div>
+            </div>
+
+            <!-- Términos y Condiciones -->
+            <div id="terminos" class="tab-content">
+                <div class="legal-section">
+                    <h2>Términos y Condiciones – Vexel</h2>
+
+                    <h3>1. Identificación</h3>
+                    <p>El presente sitio web <strong>Vexel</strong> es gestionado por:</p>
+                    <div class="contact-info">
+                        <ul>
+                            <li><strong>Nombre comercial:</strong> Vexel</li>
+                            <li><strong>Correo de contacto:</strong> contacto@vexel.com <em>(cambia al real)</em></li>
+                        </ul>
+                    </div>
+                    <p>El acceso y uso de este sitio web implica la aceptación expresa de los presentes Términos y Condiciones.</p>
+
+                    <h3>2. Objeto</h3>
+                    <p>Los presentes Términos y Condiciones regulan el acceso, navegación y uso de la web de <strong>Vexel</strong>, así como las responsabilidades derivadas del uso de sus formularios de contacto y de los servicios ofrecidos.</p>
+
+                    <h3>3. Condiciones de uso</h3>
+                    <ul>
+                        <li>El usuario se compromete a facilitar información veraz, actualizada y completa al enviar cualquier formulario del sitio web.</li>
+                        <li>Está prohibido utilizar esta web con fines ilícitos, fraudulentos o que perjudiquen a terceros.</li>
+                        <li><strong>Vexel</strong> se reserva el derecho de rechazar solicitudes que contengan información falsa, ofensiva o que no se ajusten a la naturaleza de los servicios ofrecidos.</li>
+                    </ul>
+
+                    <h3>4. Servicios</h3>
+                    <p><strong>Vexel</strong> ofrece servicios de diseño y desarrollo web, así como otros servicios digitales relacionados. El envío de un formulario a través de la web no supone la contratación inmediata de ningún servicio; se trata únicamente de una solicitud de información o propuesta.</p>
+                    <p>La contratación de servicios quedará sujeta a la aceptación expresa de un presupuesto y a un acuerdo entre <strong>Vexel</strong> y el cliente.</p>
+
+                    <h3>5. Propiedad intelectual</h3>
+                    <p>Todos los contenidos de este sitio web (textos, imágenes, logotipos, diseños, código fuente, etc.) son propiedad de <strong>Vexel</strong> o de sus legítimos titulares, quedando prohibida su reproducción, distribución o modificación sin autorización expresa.</p>
+
+                    <h3>6. Responsabilidades</h3>
+                    <ul>
+                        <li><strong>Vexel</strong> no se hace responsable de los posibles daños derivados del mal uso de la web ni de la imposibilidad temporal de acceso a la misma.</li>
+                        <li>El usuario es el único responsable de la veracidad y exactitud de los datos que facilita.</li>
+                    </ul>
+
+                    <h3>7. Protección de datos</h3>
+                    <p>Los datos personales recogidos a través de la web serán tratados conforme a lo dispuesto en nuestra <strong>Política de Privacidad</strong>.</p>
+
+                    <h3>8. Modificaciones</h3>
+                    <p><strong>Vexel</strong> se reserva el derecho de modificar en cualquier momento los presentes Términos y Condiciones, así como los servicios prestados a través del sitio web.</p>
+
+                    <h3>9. Legislación aplicable y jurisdicción</h3>
+                    <p>Los presentes Términos y Condiciones se regirán e interpretarán de acuerdo con la legislación española y europea aplicable.</p>
+                </div>
+            </div>
+
+            <!-- Política de Calidad -->
+            <div id="calidad" class="tab-content">
+                <div class="legal-section">
+                    <h2>Política de Calidad – Vexel</h2>
+                    <p>En <strong>Vexel</strong> nos comprometemos a ofrecer soluciones digitales que impulsen el crecimiento y la visibilidad de nuestros clientes, garantizando la máxima calidad en el diseño y desarrollo de páginas web.</p>
+                    <p>Nuestra política de calidad se fundamenta en los siguientes principios:</p>
+
+                    <h3>1. Orientación al cliente</h3>
+                    <p>Escuchamos y comprendemos las necesidades de cada cliente para ofrecer soluciones web personalizadas que aporten valor real a su negocio.</p>
+
+                    <h3>2. Excelencia en el servicio</h3>
+                    <p>Diseñamos y desarrollamos páginas web con altos estándares de usabilidad, accesibilidad, seguridad y rendimiento, adaptándonos a las últimas tendencias tecnológicas.</p>
+
+                    <h3>3. Cumplimiento de plazos</h3>
+                    <p>Nos comprometemos a entregar los proyectos en los tiempos acordados, con transparencia y comunicación constante durante todo el proceso.</p>
+
+                    <h3>4. Mejora continua</h3>
+                    <p>Revisamos y optimizamos constantemente nuestros procesos de trabajo, aprendiendo de cada proyecto para mejorar la eficiencia y los resultados futuros.</p>
+
+                    <h3>5. Innovación</h3>
+                    <p>Apostamos por la creatividad y el uso de tecnologías modernas para garantizar que cada web que desarrollamos sea competitiva, escalable y sostenible en el tiempo.</p>
+
+                    <h3>6. Confianza y ética profesional</h3>
+                    <p>Trabajamos con honestidad, responsabilidad y compromiso, generando relaciones de confianza a largo plazo con nuestros clientes.</p>
+
+                    <div class="contact-info">
+                        <p><strong>📌 Esta política de calidad es el marco de referencia para establecer y revisar nuestros objetivos de mejora, asegurando la satisfacción de nuestros clientes y el crecimiento sostenible de <strong>Vexel</strong>.</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="index.html" class="back-link">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                    Volver al Inicio
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Vexel. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            
+            if (navMenu.classList.contains('active')) {
+                menuToggle.innerHTML = '✕';
+            } else {
+                menuToggle.innerHTML = '☰';
+            }
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                menuToggle.innerHTML = '☰';
+            });
+        });
+
+        // Tab functionality
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+        const navLinks = document.querySelectorAll('.tab-link');
+
+        function switchTab(tabId) {
+            // Remove active class from all buttons and contents
+            tabButtons.forEach(button => button.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            navLinks.forEach(link => link.classList.remove('active'));
+
+            // Add active class to selected tab
+            const activeButton = document.querySelector(`[data-tab="${tabId}"]`);
+            const activeContent = document.getElementById(tabId);
+            const activeNavLink = document.querySelector(`[data-tab="${tabId}"].tab-link`);
+
+            if (activeButton) activeButton.classList.add('active');
+            if (activeContent) activeContent.classList.add('active');
+            if (activeNavLink) activeNavLink.classList.add('active');
+
+            // Update URL hash without jumping
+            history.replaceState(null, null, `#${tabId}`);
+        }
+
+        // Handle tab button clicks
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                switchTab(tabId);
+            });
+        });
+
+        // Handle navigation link clicks
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const tabId = link.getAttribute('data-tab');
+                switchTab(tabId);
+            });
+        });
+
+        // Handle initial page load with hash
+        window.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.substring(1);
+            if (hash && document.getElementById(hash)) {
+                switchTab(hash);
+            }
+        });
+
+        // Handle browser back/forward buttons
+        window.addEventListener('popstate', () => {
+            const hash = window.location.hash.substring(1);
+            if (hash && document.getElementById(hash)) {
+                switchTab(hash);
+            } else {
+                switchTab('privacidad');
+            }
+        });
+    </script>
+
+</body>
+</html>
